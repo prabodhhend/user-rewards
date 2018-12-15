@@ -22,14 +22,14 @@ public class PremiumCalculatorController {
     @Autowired
     private PremiumCalculatorService premiumCalculatorService;
 
-    @GetMapping("/premium/{userId}/")
+    @GetMapping("/premium/{userId}")
     public ResponseEntity<Double> getRewards(@PathVariable("userId") Long userId) {
         log.info("Fetching premium details for user:{}", userId);
         Double nextPremium = premiumCalculatorService.getNextPremium(userId);
         return new ResponseEntity<>(nextPremium, HttpStatus.OK);
     }
 
-    @GetMapping("/premium/deduct/")
+    @GetMapping("/premium/deduct")
     public ResponseEntity deductPremium() {
         log.info("deduct premium for this month");
          premiumCalculatorService.premiumDeductor();
