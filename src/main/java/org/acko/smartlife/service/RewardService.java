@@ -4,6 +4,8 @@ import org.acko.smartlife.constants.RewardPointType;
 import org.acko.smartlife.models.dto.RewardResponse;
 import org.acko.smartlife.models.dto.UpdateRewardsRequest;
 
+import java.util.List;
+
 /**
  * @author prabodh.hend
  */
@@ -13,5 +15,5 @@ public interface RewardService {
 
     boolean updateRewards(String rewardId, RewardPointType type, Double points);
 
-    boolean updateRewards(UpdateRewardsRequest request);
+    void updateRewards(List<UpdateRewardsRequest> request);
 }

@@ -46,3 +46,15 @@ base_premium double,
   updated_by varchar(128)
 
 )
+
+CREATE TABLE `premium_config` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `base_premium` decimal(10,2) DEFAULT NULL,
+  `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_by` varchar(128) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_by` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

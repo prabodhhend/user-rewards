@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author prabodh.hend
  */
@@ -30,9 +32,9 @@ public class RewardController {
     }
 
     @PutMapping("/rewards/update")
-    public ResponseEntity updateRewards(@RequestBody UpdateRewardsRequest request) {
-        log.info("Updating Rewards for userId: {}", request.getUserId());
-        rewardService.updateRewards(request);
+    public ResponseEntity updateRewards(@RequestBody List<UpdateRewardsRequest> requestList) {
+        log.info("Updating Rewards for userId: {}", requestList.get(0).getUserId());
+        rewardService.updateRewards(requestList);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

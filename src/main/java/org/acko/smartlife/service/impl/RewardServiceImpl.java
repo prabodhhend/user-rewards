@@ -18,6 +18,7 @@ import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author prabodh.hend
@@ -77,14 +78,15 @@ public class RewardServiceImpl implements RewardService {
     }
 
     @Override
-    public boolean updateRewards(UpdateRewardsRequest request) {
+    public void updateRewards(List<UpdateRewardsRequest> rewardsRequests) {
         boolean flag = false;
-        RewardSummary summary = rewardSummaryRepository.findByUserId(request.getUserId());
-        if (!StringUtils.isEmpty(request.getUserId()) && request.getPoints() > 0D) {
-            flag = this.updateRewards(summary.getRewardId(), request.getType(), request.getPoints());
-        } else {
-            throw new RuntimeException("Invalid request");
-        }
-        return flag;
+        rewardsRequests.stream().forEach(request -> {
+            RewardSummary summary = rewardSummaryRepository.findByUserId(request.getUserId());
+            if (!StringUtils.isEmpty(request.getUserId()) && request.getPoints() > 0D) {
+                 this.updateRewards(summary.getRewardId(), request.getType(), request.getPoints());
+            } else {
+                throw new RuntimeException("Invalid request");
+            }
+        });
     }
 }
