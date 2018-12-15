@@ -1,5 +1,6 @@
 package org.acko.smartlife.main;
 
+import org.acko.smartlife.models.dao.jpa.RewardSummary;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -18,6 +19,7 @@ public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Application.class, args);
+
     }
 
 }
