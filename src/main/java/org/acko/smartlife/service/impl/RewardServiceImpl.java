@@ -7,11 +7,13 @@ import org.acko.smartlife.dao.jpa.RewardSummaryRepository;
 import org.acko.smartlife.models.dao.jpa.RewardDetails;
 import org.acko.smartlife.models.dao.jpa.RewardSummary;
 import org.acko.smartlife.models.dto.RewardResponse;
+import org.acko.smartlife.models.dto.UpdateRewardsRequest;
 import org.acko.smartlife.service.RewardService;
 import org.acko.smartlife.service.integration.UserService;
 import org.acko.smartlife.service.mapper.RewardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.transaction.Transactional;
 
@@ -40,7 +42,7 @@ public class RewardServiceImpl implements RewardService {
 
     @Override
     @Transactional
-    public boolean updateRewards(String rewardId, RewardPointType type, Double amount) {
+    public boolean updateRewards(String rewardId, RewardPointType type, Double points) {
         boolean flag = false;
         RewardSummary summary = rewardSummaryRepository.findByRewardId(rewardId);
 
@@ -48,12 +50,12 @@ public class RewardServiceImpl implements RewardService {
             RewardDetails rewardDetails = null;
             switch (type) {
                 case ADD:
-                    rewardDetails = RewardDetails.builder().rewardId(rewardId).added(amount).type(type).build();
-                    summary.setTotalRewards(summary.getTotalRewards() + amount);
+                    rewardDetails = RewardDetails.builder().rewardId(rewardId).added(points).type(type).build();
+                    summary.setTotalRewards(summary.getTotalRewards() + points);
                     break;
                 case REDEEM:
-                    rewardDetails = RewardDetails.builder().rewardId(rewardId).redeemed(amount).type(type).build();
-                    summary.setTotalRedeemed(summary.getTotalRedeemed() - amount);
+                    rewardDetails = RewardDetails.builder().rewardId(rewardId).redeemed(points).type(type).build();
+                    summary.setTotalRedeemed(summary.getTotalRedeemed() - points);
                     break;
             }
             rewardDetails = rewardDetailsRepository.save(rewardDetails);
@@ -63,5 +65,18 @@ public class RewardServiceImpl implements RewardService {
             }
         }
         return flag;
+    }
+
+    @Override
+    public boolean updateRewards(UpdateRewardsRequest request) {
+        RewardSummary summary = rewardSummaryRepository.findByUserId(request.getUserId());
+        if (!StringUtils.isEmpty(request.getUserId()) && request.getPoints() > 0D) {
+
+        } else {
+            throw new RuntimeException("Invalid request");
+        }
+
+
+        return false;
     }
 }

@@ -22,7 +22,7 @@ public class PremiumCalculatorService {
     PremiumConfigRepo premiumConfigRepo;
 
 
-    public Double getNextPremium(String userId){
+    public Double getNextPremium(Long userId){
 
 
        PremiumConfig premiumConfig =  premiumConfigRepo.findByUserId(userId);

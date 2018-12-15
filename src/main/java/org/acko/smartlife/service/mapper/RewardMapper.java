@@ -10,10 +10,11 @@ public class RewardMapper {
 
     public static RewardResponse map(RewardSummary summary) {
         RewardResponse response = new RewardResponse();
-        if(null!=summary){
+        if (null != summary) {
             response.setDate(summary.getUpdatedAt());
             response.setPoints(summary.getTotalRewards());
             response.setRedeemed(summary.getTotalRedeemed());
+            response.setRewardId(summary.getRewardId());
             response.setUserId(summary.getUserId());
         }
         return response;

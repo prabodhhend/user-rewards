@@ -23,12 +23,11 @@ public class PremiumCalculatorController {
     private PremiumCalculatorService premiumCalculatorService;
 
     @GetMapping("/premium/{userId}/")
-    public ResponseEntity<Double> getRewards(@PathVariable("userId") String userId) {
+    public ResponseEntity<Double> getRewards(@PathVariable("userId") Long userId) {
         log.info("Fetching premium details for user:{}", userId);
         Double nextPremium = premiumCalculatorService.getNextPremium(userId);
         return new ResponseEntity<>(nextPremium, HttpStatus.OK);
     }
-
 
     @GetMapping("/premium/deduct/")
     public ResponseEntity deductPremium() {
@@ -36,7 +35,5 @@ public class PremiumCalculatorController {
          premiumCalculatorService.premiumDeductor();
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
 
 }

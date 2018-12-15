@@ -35,8 +35,7 @@ CREATE TABLE `rewards_details` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 
-create table premium_config
-(
+create table premium_config(
 id long AUTO_INCREMENT,
 user_id LONG ,
 base_premium double,

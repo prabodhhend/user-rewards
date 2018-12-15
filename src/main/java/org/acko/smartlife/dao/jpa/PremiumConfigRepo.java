@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface PremiumConfigRepo extends JpaRepository<PremiumConfig,Integer>{
 
 
-   PremiumConfig findByUserId(String userId);
+   PremiumConfig findByUserId(Long userId);
 }
