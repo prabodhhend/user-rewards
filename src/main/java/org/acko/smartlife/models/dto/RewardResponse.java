@@ -15,4 +15,5 @@ public class RewardResponse {
     private Date date;
     private Double points;
     private Double redeemed;
+    private Double earnedToday;
 }
