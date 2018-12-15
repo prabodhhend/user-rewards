@@ -23,6 +23,6 @@ public class PremiumConfig extends BaseEntity {
     private Long userId;
 
     @Column(name = "base_premium")
-    private Double basePremium;
+    private Double basePremium = 0D;
 
 }

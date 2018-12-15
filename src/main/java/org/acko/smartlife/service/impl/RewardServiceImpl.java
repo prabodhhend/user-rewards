@@ -43,16 +43,17 @@ public class RewardServiceImpl implements RewardService {
 
         Date from = DateTimeUtil.getTodayMorning();
         Date to = DateTimeUtil.getTodayNight();
-
-        RewardDetails rewardDetails = rewardDetailsRepository.findLatestByRewardIdAndType(summary.getRewardId(),
+        log.info("Fetching latest reward details for rewardId: {}", summary.getRewardId());
+        List<RewardDetails> rewardDetailsList = rewardDetailsRepository.findLatestByRewardIdAndType(summary.getRewardId(),
                 RewardPointType.ADD.toString(), DateTimeUtil.getYYYYMMddHHmmss(from), DateTimeUtil.getYYYYMMddHHmmss(to));
 
-        return RewardMapper.map(summary, rewardDetails);
+        return RewardMapper.map(summary, rewardDetailsList);
     }
 
     @Override
     @Transactional
     public boolean updateRewards(String rewardId, RewardPointType type, Double points) {
+        log.info("Updating latest reward details for rewardId: {}", rewardId);
         boolean flag = false;
         RewardSummary summary = rewardSummaryRepository.findByRewardId(rewardId);
 
@@ -83,7 +84,7 @@ public class RewardServiceImpl implements RewardService {
         rewardsRequests.stream().forEach(request -> {
             RewardSummary summary = rewardSummaryRepository.findByUserId(request.getUserId());
             if (!StringUtils.isEmpty(request.getUserId()) && request.getPoints() > 0D) {
-                 this.updateRewards(summary.getRewardId(), request.getType(), request.getPoints());
+                this.updateRewards(summary.getRewardId(), request.getType(), request.getPoints());
             } else {
                 throw new RuntimeException("Invalid request");
             }

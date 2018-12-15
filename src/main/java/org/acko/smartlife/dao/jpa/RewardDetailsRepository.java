@@ -18,7 +18,7 @@ public interface RewardDetailsRepository extends JpaRepository<RewardDetails, St
 
     @Query(value = "select * from `rewards_details` where `reward_id`= :rewardId and `type` = :type and " +
             "`is_deleted` = 0 and  `updated_at` between :from AND :to " +
-            " order by `id` desc limit 1 ;", nativeQuery = true)
-    RewardDetails findLatestByRewardIdAndType(@Param("rewardId") String rewardId, @Param("type") String type,
+            " order by `id` desc;", nativeQuery = true)
+    List<RewardDetails> findLatestByRewardIdAndType(@Param("rewardId") String rewardId, @Param("type") String type,
                                               @Param("from") String from, @Param("to") String to);
 }

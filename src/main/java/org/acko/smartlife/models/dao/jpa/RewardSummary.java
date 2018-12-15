@@ -6,10 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.Table;
 
 /**
  * @author prabodh.hend
@@ -30,9 +30,9 @@ public class RewardSummary extends BaseEntity {
     private String rewardId;
 
     @Column(name = "total_rewards")
-    private Double totalRewards;
+    private Double totalRewards = 0D;
 
     @Column(name = "total_redeemed")
-    private Double totalRedeemed;
+    private Double totalRedeemed = 0D;
 
 }

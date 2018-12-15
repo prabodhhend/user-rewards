@@ -25,10 +25,10 @@ public class RewardDetails extends BaseEntity {
     private String rewardId;
 
     @Column(name = "added")
-    private Double added;
+    private Double added = 0D;
 
     @Column(name = "redeemed")
-    private Double redeemed;
+    private Double redeemed = 0D;
 
     @Column(name = "type")
     @Enumerated(EnumType.STRING)

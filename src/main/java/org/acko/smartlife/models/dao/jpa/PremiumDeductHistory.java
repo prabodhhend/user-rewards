@@ -17,16 +17,16 @@ import javax.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PremiumDeductHistory extends BaseEntity{
+public class PremiumDeductHistory extends BaseEntity {
 
 
     @Column(name = "user_id")
     private Long userId;
 
     @Column(name = "money_deducted")
-    private Double moneyDeducted;
+    private Double moneyDeducted = 0D;
 
     @Column(name = "rewards_redeemed")
-    private Double rewardsRedeemed;
+    private Double rewardsRedeemed = 0D;
 
 }
