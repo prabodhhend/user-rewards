@@ -33,3 +33,17 @@ CREATE TABLE `rewards_details` (
   PRIMARY KEY (`id`),
   KEY `idx_reward_id` (`reward_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+
+create table premium_config
+(
+id long AUTO_INCREMENT,
+user_id LONG ,
+base_premium double,
+ is_deleted tinyint(1) ,
+  created_at timestamp ,
+  created_by varchar(128)  ,
+  updated_at timestamp ,
+  updated_by varchar(128)
+
+)
