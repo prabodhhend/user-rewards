@@ -36,13 +36,25 @@ CREATE TABLE `rewards_details` (
 
 
 create table premium_config(
-id long AUTO_INCREMENT,
-user_id LONG ,
-base_premium double,
- is_deleted tinyint(1) ,
-  created_at timestamp ,
-  created_by varchar(128)  ,
-  updated_at timestamp ,
-  updated_by varchar(128)
+ id long AUTO_INCREMENT,
+ user_id LONG ,
+ base_premium double,
+  is_deleted tinyint(1) ,
+   created_at timestamp ,
+   created_by varchar(128)  ,
+   updated_at timestamp ,
+   updated_by varchar(128)
 
-)
+ )
+
+ create table premium_deduct_history(
+ id long AUTO_INCREMENT,
+ user_id LONG ,
+ money_deducted double,
+ rewards_redeemed int,
+  is_deleted tinyint(1) ,
+    created_at timestamp ,
+    created_by varchar(128),
+    updated_at timestamp ,
+    updated_by varchar(128)
+ )

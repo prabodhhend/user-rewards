@@ -37,6 +37,11 @@ public class PremiumCalculatorService {
     PremiumDeductHistoryRepo premiumDeductHistoryRepo;
 
 
+    public List<PremiumDeductHistory> getPremiumHistory(Long userId){
+
+       return premiumDeductHistoryRepo.findByUserId(userId);
+    }
+
 
     public Double getNextPremium(Long userId){
 
